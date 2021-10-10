@@ -198,6 +198,21 @@ def qmp(d, num_of_qudits, prescribed_marginals, rank = 1, prescribed_spectra = [
 def accelerated_qmp(d, num_of_qudits, prescribed_marginals, rank = 1,
                     prescribed_spectra = [], params = {}):
     
+    """
+    Inputs:
+    d: local dimension
+    num_of_qudits: number of qudits
+    prescribed_marginals: The input marginals
+    rank: default rank = 1. If prescribed_spectra is an empty list, 
+          then the algorithm is an prescribed rank mode.
+    params: parameters.
+    
+    Outputs:
+    data: A dictionary containing the found matrix 'rho_n', the marginal distancce 'mdistance',
+          the eigenvalues distance 'edistance', the overall distance 'dtotal', the global 
+          'gdistance' and the runtime 'runtime'.
+    """
+    
     start = time.time()
     
     if len(prescribed_spectra) > 0:
@@ -300,7 +315,9 @@ def accelerated_qmp(d, num_of_qudits, prescribed_marginals, rank = 1,
 
 
 def swapper(d):
-    
+    """
+    returns the Swap operator of dimension d
+    """
     p = 0
     Id = np.identity(d)
     for i in range(d):
@@ -326,6 +343,8 @@ def Pj( in_label, marginal, dl, num_of_qudits, swapper_d ):
     """
     dl: local dimension
     marginal: reduced system with labels given in the tuple "in_label"
+    
+    returns: The tensor product of the terms in the operator Q in the proper order
     
     """
     
