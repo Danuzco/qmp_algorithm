@@ -22,6 +22,13 @@ qi.DensityMatrix.spectra = spectra
 
 
 class DensityMatrix(qi.DensityMatrix):
+    """
+    Adds features to the qi.DensityMatrix class
+    off the qiskit.quantum_info:
+    1) spectra
+    2) labels
+    """
+    
     def __init__(self, data, dims=None):
         self._labels = None
         super().__init__(data, dims)
@@ -38,7 +45,10 @@ class DensityMatrix(qi.DensityMatrix):
     
     
 def create_storing_folers():
-    
+    """ 
+    Creates folders, if they don't exist, 
+    to store the data
+    """
     path_file_plots = cwd + '\\plots\\'
     path_file_data = cwd + '\\data\\'
     path_file_txtdata = cwd + '\\txtdata\\'
@@ -57,7 +67,11 @@ def create_storing_folers():
         
 
 def partial_trace(rho, antisystem):
-    
+    """
+    Change the order for which 
+    the partial trace is taken 
+    in qi.partial_trace
+    """
     n = len( rho.dims() )
     lista = [n-i-1 for i in antisystem]
     lista.sort()
@@ -69,6 +83,21 @@ def partial_trace(rho, antisystem):
 
 
 def qmp(d, num_of_qudits, prescribed_marginals, rank = 1, prescribed_spectra = [], params = {}):
+    """
+    Inputs:
+    d: local dimension
+    num_of_qudits: number of qudits
+    prescribed_marginals: The input marginals
+    rank: default rank = 1. If prescribed_spectra is an empty list, 
+          then the algorithm is an prescribed rank mode.
+    params: parameters.
+    
+    Outputs:
+    data: A dictionary containing the found matrix 'rho_n', the marginal distancce 'mdistance',
+          the eigenvalues distance 'edistance', the overall distance 'dtotal', the global 
+          'gdistance' and the runtime 'runtime'.
+    """
+    
     
     start = time.time()
     
