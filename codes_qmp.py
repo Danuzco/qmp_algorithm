@@ -13,14 +13,6 @@ import os
 cwd = os.getcwd()
 
 
-
-def spectra(self):
-    return np.linalg.eigvalsh(self.data)
-
-qi.DensityMatrix.spectra = spectra
-
-
-
 class DensityMatrix(qi.DensityMatrix):
     """
     Adds features to the qi.DensityMatrix class
