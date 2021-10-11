@@ -16,7 +16,7 @@ cwd = os.getcwd()
 class DensityMatrix(qi.DensityMatrix):
     """
     Adds features to the qi.DensityMatrix class
-    off the qiskit.quantum_info:
+    of the qiskit.quantum_info:
     1) spectra
     2) labels
     """
